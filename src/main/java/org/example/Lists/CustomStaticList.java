@@ -357,11 +357,11 @@ public class CustomStaticList<T> implements List<T>, Serializable {
         if (fromIndex < 0 || fromIndex > toIndex || toIndex > capacity) {
             throw new IndexOutOfBoundsException("Not a valid index while sub listing");
         }
-        int newSize = toIndex - fromIndex + 1;
+        int newSize = toIndex - fromIndex;
         CustomStaticList<T> newList = new CustomStaticList<T>(newSize);
 
-        for (int i = fromIndex; i <= toIndex; i++) {
-            newList.add(data[i]);
+        for (int i = fromIndex; i < toIndex; i++) {
+            if(data[i] != null) newList.add(data[i]);
         }
 
         return newList;
